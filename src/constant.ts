@@ -1,0 +1,1 @@
+export const MIN_VISIBLE_TIME = 2000;

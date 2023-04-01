@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
+import { ContactService } from 'src/app/service/contact.service';
+import { MIN_VISIBLE_TIME } from 'src/constant';
 
 @Component({
   selector: 'app-contact-us',
@@ -7,18 +9,40 @@ import { FormControl, FormGroup, Validators } from '@angular/forms';
   styleUrls: ['./contact-us.component.scss'],
 })
 export class ContactUsComponent {
-  contactForm: FormGroup;
+  contactForm: FormGroup = new FormGroup({
+    email: new FormControl('', [Validators.required, Validators.email]),
+    subject: new FormControl(''),
+    message: new FormControl('', [Validators.required]),
+  });
+
   isSubmittedBool = false;
-  constructor() {
-    this.contactForm = new FormGroup({
-      email: new FormControl('', [Validators.required, Validators.email]),
-      subject: new FormControl(''),
-      message: new FormControl('', [Validators.required]),
-    });
-  }
-  submitForm() {
+  messageError = false;
+  messageSent = false;
+
+  constructor(private contactService: ContactService) {}
+  async submitForm() {
     this.isSubmittedBool = true;
-    console.log(this.contactForm.value);
+    if (this.contactForm.valid) {
+      const email = this.contactForm.get('email')?.value;
+      const subject = this.contactForm.get('subject')?.value;
+      const message = this.contactForm.get('message')?.value;
+      const res = await this.contactService.submitEmail(
+        email,
+        subject,
+        message
+      );
+      if (res) {
+        this.messageSent = true;
+        setTimeout(() => {
+          this.messageSent = false;
+        }, MIN_VISIBLE_TIME);
+      } else {
+        this.messageError = true;
+        setTimeout(() => {
+          this.messageError = false;
+        }, MIN_VISIBLE_TIME);
+      }
+    }
   }
   get email() {
     return this.contactForm.get('email');

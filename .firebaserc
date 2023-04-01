@@ -1,0 +1,14 @@
+{
+  "targets": {
+    "major-project-1193e": {
+      "hosting": {
+        "major-project2": [
+          "major-project-1193e"
+        ]
+      }
+    }
+  },
+  "projects": {
+    "default": "major-project-1193e"
+  }
+}
