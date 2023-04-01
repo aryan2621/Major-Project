@@ -1,0 +1,29 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+@import url("https://fonts.googleapis.com/css2?family=Noto+Sans&family=Open+Sans:wght@500&display=swap");
+
+@layer base {
+  html {
+    scroll-behavior: smooth;
+  }
+}
+a:hover {
+  text-decoration: none;
+  cursor: pointer;
+}
+.feature-img {
+  width: 100%;
+  height: 30vh;
+}
+body {
+  font-family: "Noto Sans", sans-serif;
+  // font-family: 'Open Sans', sans-serif;
+
+  background: radial-gradient(
+    circle at 18.7% 37.8%,
+    rgb(250, 250, 250) 0%,
+    rgb(225, 234, 238) 90%
+  );
+  font-size: large;
+}
