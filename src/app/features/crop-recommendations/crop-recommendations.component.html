@@ -1,0 +1,146 @@
+<app-navbar></app-navbar>
+<div
+  class="flex w-[85vw] mx-auto my-10 bg-teal-50 rounded drop-shadow-lg pt-5 pb-5"
+>
+  <div class="form mx-5 h-[100%]">
+    <h1
+      href="#"
+      class="text-dark rounded-md px-3 py-2 text-sm font-medium"
+      aria-current="page"
+    >
+      Crop Recommendations
+    </h1>
+    <p class="mx-auto">
+      Harvest AI's crop recommendation feature uses ML algorithms to
+      <br />
+      provide personalized insights on the best crops to plant for optimal
+      yields and profitability.
+    </p>
+    <br />
+    <form [formGroup]="crop" class="mx-auto" (ngSubmit)="cropSubmit()">
+      <div class="grid md:grid-cols-2 md:gap-6">
+        <div class="relative z-0 w-full mb-6 group">
+          <input
+            type="number"
+            formControlName="nitrogen"
+            id="nitrogen"
+            placeholder=""
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          />
+          <span class="text-orange-600">{{ nitrogenError() }}</span>
+          <label
+            for="nitrogen"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Ratio of Nitrogen</label
+          >
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+          <input
+            type="number"
+            formControlName="phosphorus"
+            id="phosphorus"
+            placeholder=""
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          />
+          <span class="text-orange-600">{{ phosphorusError() }}</span>
+          <label
+            for="phosphorus"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Ratio of Phosphorous</label
+          >
+        </div>
+      </div>
+      <div class="grid md:grid-cols-2 md:gap-6">
+        <div class="relative z-0 w-full mb-6 group">
+          <input
+            type="number"
+            formControlName="potassium"
+            id="potassium"
+            placeholder=""
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          />
+          <span class="text-orange-600">{{ potassiumError() }}</span>
+          <label
+            for="potassium"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Ratio of Potassium</label
+          >
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+          <input
+            type="number"
+            formControlName="rainfall"
+            id="rainfall"
+            placeholder=""
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          />
+          <span class="text-orange-600">{{ rainfallError() }}</span>
+          <label
+            for="rainfall"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Rainfall in Millimeter [MM]</label
+          >
+        </div>
+      </div>
+      <div class="grid md:grid-cols-3 md:gap-6">
+        <div class="relative z-0 w-full mb-6 group">
+          <input
+            type="number"
+            formControlName="temperature"
+            id="temperature"
+            placeholder=""
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          />
+          <span class="text-orange-600">{{ temperatureError() }}</span>
+          <label
+            for="temperature"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Temperature in Celsius</label
+          >
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+          <input
+            type="number"
+            formControlName="humidity"
+            id="humidity"
+            placeholder=""
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          />
+          <span class="text-orange-600">{{ humidityError() }}</span>
+          <label
+            for="humidity"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >% of Humidity</label
+          >
+        </div>
+        <div class="relative z-0 w-full mb-6 group">
+          <input
+            type="number"
+            formControlName="ph"
+            id="ph"
+            placeholder=""
+            class="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
+          />
+          <span class="text-orange-600">{{ phError() }}</span>
+          <label
+            for="ph"
+            class="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
+            >Ph level of Soil</label
+          >
+        </div>
+      </div>
+      <button
+        type="submit"
+        mat-button
+        class="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-lg text-sm w-full sm:w-full px-5 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
+      >
+        Submit
+      </button>
+    </form>
+  </div>
+  <div class="form-img w-[40%] mx-auto">
+    <img class="shadow-lg rounded-md" src="assets/images/crop.jpg" alt="" />
+  </div>
+</div>
+
+<app-footer></app-footer>
