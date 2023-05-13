@@ -102,7 +102,7 @@ export class FertilizersRecommendationsComponent {
 @Component({
   selector: 'app-fertilizer-recommendations-dialog',
   template: `
-    <h2 mat-dialog-title>CROP RECOMMENDATION</h2>
+    <h2 mat-dialog-title>FERTILIZER RECOMMENDATION</h2>
     <mat-dialog-content class="mat-typography">
       <h3 class="mx-auto justify-center">
         You should use  {{ data.fertilizer | uppercase }} in your farm !
