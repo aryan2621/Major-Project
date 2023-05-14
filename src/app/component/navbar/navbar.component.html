@@ -1,27 +1,93 @@
 <nav class="bg-gray-800">
   <div class="mx-auto max-w-7xl px-2 sm:px-6 lg:px-8">
     <div class="relative flex h-16 items-center justify-between">
-      <div class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start">
+      <div
+        class="flex flex-1 items-center justify-center sm:items-stretch sm:justify-start"
+      >
         <div class="flex flex-shrink-0 items-center">
-          <img class="block h-8 w-auto lg:hidden"
-            src="https://upload.wikimedia.org/wikipedia/en/9/96/Logo_of_NIT_Jalandhar.png" alt="Your Company">
-          <img class="hidden h-8 w-auto lg:block"
-            src="https://upload.wikimedia.org/wikipedia/en/9/96/Logo_of_NIT_Jalandhar.png" alt="Your Company">
+          <img
+            class="block h-8 w-auto lg:hidden"
+            src="https://upload.wikimedia.org/wikipedia/en/9/96/Logo_of_NIT_Jalandhar.png"
+            alt="Your Company"
+          />
+          <img
+            class="hidden h-8 w-auto lg:block"
+            src="https://upload.wikimedia.org/wikipedia/en/9/96/Logo_of_NIT_Jalandhar.png"
+            alt="Your Company"
+          />
         </div>
         <div class="hidden sm:ml-6 sm:block">
           <div class="flex space-x-4">
-            <a routerLink="/" class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
-              aria-current="page">Home</a>
-            <a 
-            routerLink="/aim-of-project"
-              class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Motive</a>
-            <a 
-            routerLink="/about-us"
-              class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Team</a>
-            <a 
-            routerLink="/contact-us"
-              class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium">Contact</a>
+            <a
+              routerLink="/"
+              class="bg-gray-900 text-white rounded-md px-3 py-2 text-sm font-medium"
+              aria-current="page"
+              >Home</a
+            >
+            <a
+              routerLink="/aim-of-project"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+              >Motive</a
+            >
+            <a
+              routerLink="/about-us"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+              >Team</a
+            >
+            <a
+              routerLink="/contact-us"
+              class="text-gray-300 hover:bg-gray-700 hover:text-white rounded-md px-3 py-2 text-sm font-medium"
+              >Contact</a
+            >
           </div>
+        </div>
+      </div>
+      <button
+        id="dropdownUserAvatarButton"
+        data-dropdown-toggle="dropdownAvatar"
+        class="flex mx-3 text-sm bg-gray-800 rounded-full md:mr-10 focus:ring-4 focus:ring-gray-300 dark:focus:ring-gray-600"
+        type="button"
+      >
+        <span class="sr-only">User Profile</span>
+        <img
+          class="w-8 h-8 rounded-full"
+          src="{{
+            user.photoURL
+              ? user.photoURL
+              : 'https://source.unsplash.com/random/?person'
+          }}"
+          alt="user photo"
+        />
+      </button>
+
+      <!-- Dropdown menu -->
+      <div
+        id="dropdownAvatar"
+        class="z-10 hidden bg-white divide-y divide-gray-100 rounded-lg shadow w-70 dark:bg-gray-700 dark:divide-gray-600"
+      >
+        <div class="px-4 py-3 text-sm text-gray-900 dark:text-white">
+          <div>{{ user.displayName }}</div>
+          <div class="font-medium truncate">{{ user.email }}</div>
+        </div>
+        <ul
+          class="py-2 text-sm text-gray-700 dark:text-gray-200"
+          aria-labelledby="dropdownUserAvatarButton"
+        >
+          <li>
+            <a
+              href="#"
+              class="block px-4 py-2 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white"
+              >{{ user.emailVerified ? "Verified" : "Need to be verified" }}</a
+            >
+          </li>
+        </ul>
+        <div class="py-2">
+          <button
+            (click)="signOut()"
+            class="block px-4 py-2 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white"
+          >
+            Sign out
+          </button>
         </div>
       </div>
     </div>

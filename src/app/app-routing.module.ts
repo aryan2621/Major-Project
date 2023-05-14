@@ -7,18 +7,42 @@ import { AimOfProjectComponent } from './pages/aim-of-project/aim-of-project.com
 import { NotFoundComponent } from './pages/not-found/not-found.component';
 import { CropRecommendationsComponent } from './features/crop-recommendations/crop-recommendations.component';
 import { FertilizersRecommendationsComponent } from './features/fertilizers-recommendations/fertilizers-recommendations.component';
+import { LoginComponent } from './pages/login/login.component';
+import { SignUpComponent } from './component/sign-up/sign-up.component';
+import { ForgetPasswordComponent } from './component/forget-password/forget-password.component';
+import { VerifyEmailComponent } from './component/verify-email/verify-email.component';
+import { AuthGuard } from './guard/auth.guard';
 const routes: Routes = [
-  {path:'',component:HomeComponent},
-  {path:'about-us',component:AboutUsComponent},
-  {path:'contact-us',component:ContactUsComponent},
-  {path:'aim-of-project',component:AimOfProjectComponent},
-  {path:'features/crop-recommendation',component:CropRecommendationsComponent},
-  {path:'features/fertilizer-prediction',component:FertilizersRecommendationsComponent},
-  {path:'**',component:NotFoundComponent},
+  { path: '', redirectTo: '/login', pathMatch: 'full' },
+  { path: 'login', component: LoginComponent },
+  { path: 'sign-up', component: SignUpComponent },
+  { path: 'forgot-password', component: ForgetPasswordComponent },
+  { path: 'verify-email-address', component: VerifyEmailComponent },
+  { path: 'dashboard', component: HomeComponent, canActivate: [AuthGuard] },
+  { path: 'about-us', component: AboutUsComponent, canActivate: [AuthGuard] },
+  {
+    path: 'contact-us',
+    component: ContactUsComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'aim-of-project',
+    component: AimOfProjectComponent,
+    canActivate: [AuthGuard],
+  },
+  {
+    path: 'features/crop-recommendation',
+    component: CropRecommendationsComponent,
+  },
+  {
+    path: 'features/fertilizer-prediction',
+    component: FertilizersRecommendationsComponent,
+  },
+  { path: '**', component: NotFoundComponent },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}
